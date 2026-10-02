@@ -30,16 +30,7 @@ A structured collection of investigation reports, lab walkthroughs, and challeng
 | ID | Lab / Module Name | Platform | Vulnerability / Topic | Key Tools Used 
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **WEB-01**| Detecting Web Attacks | LetsDefend | Web Fundamentals, SOC analysing | SQL Inection, Cross Site scripting, IDOR.
-| **WEB-02**| *XXE Infiltration Lab Writeup* | CyberDefenders | XXE Injectors | Burp Suite Repeater | [View Report](./portswigger/lab-01.md) |
-
----
-
-## 🛠️ Preferred Analysis Stack
-
-* **Disk & Artifact Analysis:** FTK Imager, Autopsy, KAPE, Eric Zimmerman Suite (`PECmd`, `MFTECmd`, `EvtxECmd`)
-* **Memory Forensics:** Volatility 2 & 3, Redline
-* **Network Traffic Analysis:** Wireshark, NetworkMiner, tshark
-* **Web & Utilities:** Burp Suite, CyberChef, OWASP ZAP, Python 3
+| **WEB-02**| *XXE Infiltration Lab Writeup* | CyberDefenders | XXE Injectors | Burp Suite Repeater | [View Report](https://github.com/immy1482/imogen-anderson-dfir/blob/main/CTF_Writeups/Cyber_Defenders/XXE_Infiltration_Writeup.md) |
 
 ---
 
