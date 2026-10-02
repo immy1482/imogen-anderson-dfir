@@ -1,10 +1,10 @@
-# Cyber Threat Framework & CTF Write-Ups
+# Cyber Threat Framework & CTF Write-Ups ⋆˚꩜｡
 
 A structured collection of investigation reports, lab walkthroughs, and challenge write-ups across various Digital Forensics, Incident Response (DFIR), and Web Security platforms.
 
 ---
 
-## Platforms & Profiles
+## Platforms & Profiles ⋆˚꩜｡
 
 | Platform | Profile / Status | Focus Areas |
 | :--- | :--- | :--- |
@@ -15,9 +15,9 @@ A structured collection of investigation reports, lab walkthroughs, and challeng
 
 ---
 
-## 📂 Write-Up Index
+## Write-Up Index ⋆˚꩜｡
 
-### 🔍 Digital Forensics & Incident Response (DFIR)
+### Digital Forensics & Incident Response (DFIR)
 
 | ID | Lab / Challenge Name | Platform | Category / Domain | Key Tools Used | Report Link |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -25,7 +25,7 @@ A structured collection of investigation reports, lab walkthroughs, and challeng
 | **DF-02** | *[Insert Sherlock Name]* | Hack The Box | Disk & Artifact Analysis | Eric Zimmerman Tools, KAPE | [View Report](./hackthebox/sherlock-01.md) |
 | **DF-03** | *[Insert Lab Name]* | Blue Team Labs | Network Analysis | Wireshark, NetworkMiner | [View Report](./btlo/lab-01.md) |
 
-### 🌐 Web Security & Fundamentals
+### Web Security & Fundamentals
 
 | ID | Lab / Module Name | Platform | Vulnerability / Topic | Key Tools Used | Report Link |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -34,7 +34,7 @@ A structured collection of investigation reports, lab walkthroughs, and challeng
 
 ---
 
-## ⚠️ Responsible Disclosure & Anti-Spoiler Policy
+## Responsible Disclosure & Anti-Spoiler Policy ⋆˚꩜｡
 
 * **Active Challenges:** No active Hack The Box machines, active Sherlocks, or ongoing CTF competition answers are hosted in this repository in compliance with platform policies.
 * **Retired Content:** All solutions featured here pertain to retired challenges or public educational labs.
