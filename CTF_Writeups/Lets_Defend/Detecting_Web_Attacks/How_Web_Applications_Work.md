@@ -15,7 +15,7 @@
 
 ---
 
-## 📖 Key Takeaways & Core Theory
+## Key Takeaways & Core Theory
 
 * **OSI Model Placement:** HTTP operates at Layer 7 (Application Layer), relying on lower layers such as Ethernet (Layer 2), IP (Layer 3), TCP (Layer 4), and SSL/TLS (Layer 6) to establish connectivity and security before HTTP communication begins.
 * **HTTP Request Structure:** Consists of a Request Line (Method + Path), Headers (Host, User-Agent, Cookie, etc.), an Empty Line (separator), and an optional Request Body (data/parameters).
