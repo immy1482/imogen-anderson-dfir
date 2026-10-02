@@ -27,10 +27,10 @@ A structured collection of investigation reports, lab walkthroughs, and challeng
 
 ### 🌐 Web Security & Fundamentals
 
-| ID | Lab / Module Name | Platform | Vulnerability / Topic | Key Tools Used 
+| ID | Lab / Module Name | Platform | Vulnerability / Topic | Key Tools Used | Report Link |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **WEB-01**| Detecting Web Attacks | LetsDefend | Web Fundamentals, SOC analysing | SQL Inection, Cross Site scripting, IDOR.
-| **WEB-02**| *XXE Infiltration Lab Writeup* | CyberDefenders | XXE Injectors | Burp Suite Repeater | [View Report](https://github.com/immy1482/imogen-anderson-dfir/blob/main/CTF_Writeups/Cyber_Defenders/XXE_Infiltration_Writeup.md) |
+| **WEB-01** | Detecting Web Attacks | LetsDefend | Web Fundamentals, SOC Analysis | SQL Injection, Cross-Site Scripting, IDOR | [View Report](./letsdefend/detecting-web-attacks.md) |
+| **WEB-02** | XXE Infiltration Lab Writeup | CyberDefenders | XXE Injection | Burp Suite Repeater | [View Report](./cyberdefenders/xxe-infiltration.md) |
 
 ---
 
