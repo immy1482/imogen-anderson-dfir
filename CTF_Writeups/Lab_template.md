@@ -10,7 +10,7 @@
 
 ---
 
-## 📌 Incident Scenario & Objective
+## Incident Scenario & Objective
 
 > **Scenario:** A brief 2–3 sentence description of the alert or incident.  
 > *Example:* "An alert triggered on the SIEM indicating a suspicious PowerShell execution on host `DESKTOP-8J12K`. The objective is to investigate the initial access vector, verify if malware executed, and determine whether command-and-control (C2) communication occurred."
