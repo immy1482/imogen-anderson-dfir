@@ -1,4 +1,4 @@
-# 🧪 Lab Investigation: [Lab / Case Title]
+# Lab Investigation: [Lab / Case Title]
 
 | Metadata | Details |
 | :--- | :--- |
