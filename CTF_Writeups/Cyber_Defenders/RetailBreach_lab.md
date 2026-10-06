@@ -66,16 +66,50 @@ It was 2024-03-29 at 12:09.
 
 ### Q5 - The theft of a session token through XSS is a serious security breach that allows unauthorized access. Can you provide the session token that the attacker acquired and used for this unauthorized access?
 
+A session token identifies and tracks the user's session within a user's application after they had been logged in so users don't have to type in their password at every single web page. But since this attacker steals the users' session cookies and the admin already visited the website, they can retrieve the session token.
+
+So, following the HTTP stream of the previous packet, it tells us the set-cookie: lqkctf24s9h9lg67teu8uevn3q. 
+
+(see screenshot 7 in the *screenshots_retailbreach* folder.)
+
 ### Q6 - Identifying which scripts have been exploited is crucial for mitigating vulnerabilities in a web application. What is the name of the script that was exploited by the attacker?
 
+So since the attacker can't do anything until after recieving the session token, we should filter all the packets by the attacker's IP address after the admin's packet where their token / cookie was stolen.
+
+(see screenshot 8 in the *screenshots_retailbreach* folder.)
+
+Following at one of the packets, there is a php file called *log_viewer.php* and inputting that answer in confirms that it is the name of the script exploited.
+
+(see screenshot 9 in the *screenshots_retailbreach* folder.)
+
 ### Q7 - Exploiting vulnerabilities to access sensitive system files is a common tactic used by attackers. Can you identify the specific payload the attacker used to access a sensitive system file?
+
+After looking at the format of the answer - I had no idea what it could be. Then I realised I put in the wrong IP address... whoops.. Well, after using the right one this time, it was immediately clear what payload the attacker used from the information of one of the packets - ../../../../../etc/passwd
+
+(see screenshot 10 in the *screenshots_retailbreach* folder.)
 
 ## Verdict and incident recommendations 
 
 ### Verdict
 
+The investigation concluded that ShopShphere was compromised by an attacker using multiple methods. First, using Gobuster and performing a directory brute-forcing attack, then exploiting a Cross-Site Scripting (XSS) vulnerability and injecting a malicious payload to extract a admin's session cookie.
+
+At around 2024-03-29 12:09 UTC, the admin's cookie was exposed to the attacker, and the attacker used it to access the application as an administrator. Then, they accessed log_viewer.php and used a path traversal payload, allowing them access to /etc/passwd system file.
+
 ### Remediation Steps
 
-## References
+1. Fix the XSS vulnerability
+2. Protect session tokens 
+3. Fix the path traversal vulberability
+4. Restrict admin pages to authorised admin and apply the principle of least prvilege so the web application has only the permissions it requires.
+5. Review the compromised system for anything else that may have been compromised (accounts, files, sessions).
+6. Improve brute-force and attack detection.
+
+## Closing thoughts
+
+Thank you for reading! This was fun to do, fairly simple too. I'm still experimenting with formatting and such so hopefully this template is good enough. I feel like it's a little too boring still, but it's getting better. I'm a very visual person, I enjoy things looking good since it makes me pay attention more to it and read more carefully, so I would assume others would be the same.
+
+## References + achievement 
 
 https://www.kali.org/tools/gobuster/ 
+https://cyberdefenders.org/blueteam-ctf-challenges/achievements/immy1482/retailbreach/ 
