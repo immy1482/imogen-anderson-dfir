@@ -32,7 +32,7 @@ In this portfolio, you will find:
 
 ## Certifications & Achievements ⋆˚࿔
 
-* **[Introduction to Cyber Security: Stay Safe Online Course by the Open University]** – *Issued 2026*
+* **[Introduction to Cyber Security: Stay Safe Online Course by the Open University]** – *Completed 2026*
 * **[Learning from Major Cyber Security Incidents Online Course by the Open University]** – *Completed 2026*
 * **[Digital Forensics Online Course by the Open University]** – *Completed 2026*
 
