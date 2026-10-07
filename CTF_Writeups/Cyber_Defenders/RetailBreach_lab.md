@@ -6,7 +6,7 @@
 | **Category** | Network Forensics |
 | **Difficulty** | Easy |
 | **Tactics** | Reconnaissance, Initial Access, Execution, Credential Access, Discovery, Lateral Movement |
-| **Primary Tools Used** | `Wireshark`, `Network Miner`, `Brim`|
+| **Primary Tools Used** | `Wireshark`, `CyberChef`, `Brim`|
 
 ---
 
