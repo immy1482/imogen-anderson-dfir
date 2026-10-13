@@ -18,7 +18,31 @@
 
 ## Lab Questions & Findings
 
-### Q1 - 
+### Q1 - Categorizing malware enables a quicker and easier understanding of its distinct behaviors and attack vectors. What is the category of the identified malware?
+
+Today, we're using VirusTotal! VirusTotal is *totally* new to me, so I decided to do a little bit of looking about before starting to answer questions. I was instructed to put the hash given when downloading the lab's folder and inputted into VirusTotal, as seen in screenshot 1. Screenshot 2 is what I saw when I inputted the hash. 
+
+Immediately I noticed there was a lot of security vendors that had flag the hash as malicious. There were three catagories shown in 'threat catagories': trojan, dropper, and pua, as shown in screenshot 3. 
+
+Inputting trojan for this question was the correct answer!
+
+
+### Q2 - Clearly identifying the name of the malware file improves communication among the SOC team. What is the file name associated with this malware?
+
+After finding the catagory, I went to the details lab and scrolled down a bit to the name's section as shown in screenshot 4. The name of the file is 'wextract'. 
+
+### Q3 - Knowing the exact timestamp of when the malware was first observed can help prioritize response actions. Newly detected malware may require urgent containment and eradication compared to older, well-documented threats. What is the UTC timestamp of the malware's first submission to VirusTotal?
+
+Also shown in screenshot 4, it shows the UTC timestamp of when the malware was first submitted to VirusTotal - 2023-10-06 04:41. 
+
+### Q4 - Understanding the techniques used by malware helps in strategic security planning. What is the MITRE ATT&CK technique ID for the malware collecting data from the local system prior to exfiltration?
+
+MITRE ATT&CK is a knowledge base of adversary tactics and techniques which are based on real-world situations. They have lists of techniques and such that could be used by all sorts of hackers to infilitrate and harm computers. They use this database to identify attacks and help with the mitigation of them. All techniques have IDs that are assigned to them by MITRE ATT&CK. 
+
+Going into the 'collection' section of the behaviour tab, the malware seems to search for sensitive data of the web browser 'Comodo IceDragon' by file. The ID for this is T1005, as shown in screenshot 5. 
+
+
+### Q2 -
 
 ### Q2 -
 
