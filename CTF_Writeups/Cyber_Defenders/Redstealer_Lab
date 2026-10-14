@@ -41,10 +41,15 @@ MITRE ATT&CK is a knowledge base of adversary tactics and techniques which are b
 
 Going into the 'collection' section of the behaviour tab, the malware seems to search for sensitive data of the web browser 'Comodo IceDragon' by file. The ID for this is T1005, as shown in screenshot 5. 
 
+### Q5 - Following execution, the malware performs a connectivity check by resolving a well-known social-media domain before contacting its C2. Which single domain does it resolve for this check?
 
-### Q2 -
+### Q6 - Once the malicious IP addresses are identified, network security devices such as firewalls can be configured to block traffic to and from these addresses. Can you provide the IP address and destination port the malware communicates with?
 
-### Q2 -
+### Q7 - YARA rules are designed to identify specific malware patterns and behaviors. Using MalwareBazaar, what's the name of the YARA rule created by "Varp0s" that detects the identified malware?
+
+### Q8 - Understanding which malware families are targeting the organization helps in strategic security planning for the future and prioritizing resources based on the threat. Can you provide the different malware alias associated with the malicious IP address according to Malpedia?
+
+### Q9 - By identifying the malware's imported DLLs, we can configure security tools to monitor for the loading or unusual usage of these specific DLLs. Can you provide the DLL utilized by the malware for privilege escalation?
 
 ## Verdict and incident recommendations 
 
