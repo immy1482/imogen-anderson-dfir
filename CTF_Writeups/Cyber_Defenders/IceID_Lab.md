@@ -17,53 +17,84 @@
 
 ## Lab Questions & Findings
 
-### Q1 - What is the name of the file associated with the given hash?
+### Lab Questions and Findings
 
-IceID can refer to two things in the world of cyber security - a incident where ICE (Immigration and Customs Enforcement) had all of their personal information leaked by a whistleblower, or a banking trojan and inital access malware. We'll be talking about the latter today!
+### Q1: What is the name of the file associated with the given hash?
 
-Today we will be using virus total. After inputting the hash, screenshot 1 is the screen we are greeted with. 
+IcedID can refer to different things in the world of cyber security. In this investigation, IcedID refers to a banking trojan and initial access malware, rather than an unrelated incident involving a leak of personal information belonging to U.S. Immigration and Customs Enforcement (ICE).
 
-Scrolling down on the detail pages, there are a couple names for the file associated - but the actual document has the name 'document-1982481273.xlsm'. 
+To investigate the sample, I used VirusTotal to search for the provided hash. Screenshot 1 shows the initial results page.
 
-Xlsm file is a excel spreadsheet format which can store and run code and custom scripts. Xlsm can be used to deliver the malware and bypass email security filters - especially for a bank which often use spreadsheets, so it's no wonder that this could be have gone past employees at banks and be flagged as a normal spreadsheet. 
+After scrolling through the file details, several filenames were listed as being associated with the sample. The filename identified for this investigation was document-1982481273.xlsm.
 
-### Q2 - Can you identify the filename of the GIF file that was deployed?
+The .xlsm extension indicates a Microsoft Excel macro-enabled workbook, which can contain macros and other executable code. Such documents can be used in phishing campaigns to deliver malware or initiate further malicious activity. Because spreadsheets are commonly used in business environments, a malicious document may appear legitimate to an unsuspecting employee.
 
-Going to the behaviour tab and scrolling down to the files dropped, theres only one gif that appears there - 3003.gif, as shown in screenshot 2. 
+However, the file extension alone does not establish that the document contains malicious macros or that any code was executed.
 
-Screenshot 3 shows that the gif had been used several times for various websites, and since they were in the dropped files, they must be highly detected as malicious - designed to be executed as part of the malware's process. This is the payload.
+### Q2: Can you identify the filename of the GIF file that was deployed?
 
-### Q3 - How many domains does the malware look to download the additional payload file in Q2?
+I navigated to the Behaviour tab in VirusTotal and scrolled down to the list of dropped files. Only one GIF file was listed: 3003.gif, as shown in Screenshot 2.
 
-Well, it's 5! Since we know the answer to the last question was 3003.gif, we can look at the contacted URLs in screenshot 3 and see which ones have the 3003.gif payload and which ones don't. 5 of the domains do, 3 of them don't.
+Screenshot 3 provides additional information about the file and its associations with different URLs.
 
-Since it attacked multiple servers / domains, the malware increases it's likelihood of successful infilitration. 
+The presence of this file in the dropped-files section indicates that it was associated with the sample's observed behaviour. However, further analysis would be needed to establish precisely how the file was used and whether it contained any malicious functionality. Its presence alone does not prove that the GIF itself was executable malware.
 
-### Q4 - From the domains mentioned in Q3, a DNS registrar was predominantly used by the threat actor to host their harmful content, enabling the malware's functionality. Can you specify the Registrar INC of the domain that end with .com?
+### Q3: How many domains does the malware contact to download the additional payload identified in Q2?
 
-From using the names of the infected domains in Q3, we scroll down a little to contacted domains and look at the domains. One of the domains that had been used by the malware is tajushariya.com, whos registrar is NameCheap. See screenshot 4. 
+The answer is five domains.
 
-### Q5 - Could you specify the threat actor linked to the sample provided?
+Using the contacted URLs shown in Screenshot 3, I identified which URLs referenced the 3003.gif file. Five of the listed domains were associated with URLs containing this filename, while three others did not appear to reference it.
 
-Using Malpedia, a threat intelligence platform designed to help security analysts and other people in the cyber security industry, it gives us the names of the actors associated with IcedID, as seen in screenshot 5. 
+Using multiple domains can provide malware operators with alternative locations for hosting or retrieving files. This may help maintain access to payloads if one domain becomes unavailable or is blocked.
 
-The alias that CyberDefenders is specifically looking for is gold cabin. 
+However, the presence of multiple URLs does not necessarily mean that all five downloads succeeded or that every domain was contacted during every execution.
 
-Gold cabin is a cybercriminal threat group that operates a malware distribution service for their customers. They use malicious documents in password-protected ZIP archives (which bypass basic filters) and send it through stolen email chains to download and execute payloads. 
+### Q4: From the domains identified in Q3, which registrar was predominantly used by the threat actor to host their malicious content? Specify the registrar of the domain ending in .com.
 
-The DOJ (U.S. Department of Justice) sentenced a co-manager, Ilya Angelov, to 24 months in prison along with a 1.7 million fine. The group has pretty much died out by then. 
+I examined the domains identified during the previous question and investigated their registration information.
 
-### Q6 - In the Execution phase, what function does the malware employ to fetch extra payloads onto the system? 
+One of the domains associated with the sample was tajushariya.com. As shown in Screenshot 4, its registrar was identified as NameCheap, Inc.
 
+Domain registration information can help investigators identify infrastructure associated with suspicious activity. However, a domain's registrar is not necessarily responsible for the malicious activity conducted through that domain.
 
+### Q5: Can you identify the threat actor associated with the provided sample?
+
+I used Malpedia, a malware research and threat intelligence resource, to investigate the threat actors associated with IcedID. Screenshot 5 shows the relevant information.
+
+The alias specifically required by CyberDefenders was Gold Cabin.
+
+Gold Cabin is an alias associated with the cybercriminal activity surrounding IcedID. The group's operations involved distributing malware through phishing campaigns and malicious documents, including documents delivered in password-protected ZIP archives. These campaigns could use existing email conversations to make messages appear more credible and persuade recipients to open malicious attachments.
+
+The U.S. Department of Justice also announced criminal proceedings involving IcedID operators, including co-manager Ilya Angelov, who was sentenced to 24 months in prison and ordered to pay a financial penalty.
+
+These developments illustrate the criminal activity associated with IcedID and the consequences faced by individuals involved in its operation. However, an alias associated with a malware family does not, on its own, prove that a particular actor personally conducted every observed attack.
+
+### Q6: During the execution phase, which function does the malware use to retrieve additional payloads onto the system?
+
+The function identified was URLDownloadToFileA, as shown in Screenshot 6 from Recorded Future Triage.
+
+URLDownloadToFileA is a Windows API function that allows an application to download a file from a URL and save it to a local file path. It can retrieve files over HTTP or HTTPS, making it useful for legitimate applications that need to download resources.
+
+However, malware can also abuse this function to retrieve additional payloads from remote infrastructure and save them to a victim's system. This can enable a malware infection to progress beyond its initial delivery stage.
+
+Identifying this function provides a useful behavioural indicator for investigators. When reviewing a suspicious process, analysts can examine associated network connections, downloaded files and process activity to determine whether the function was used for malicious purposes.
 
 ## Verdict and incident recommendations 
 
 ### Verdict
 
+The investigation concluded that IceID malware was associated with a .xlsm document which was used to phish websites. During execution, the malware used  the Windows API function URLDownloadToFileA to attempt to download an additional payload named 3003.gif from five different domains. The downloaded file's .gif extension may have been used to disguise its true file type and make it appear less suspicious. It was linked to Gold Cabin, a well-known cybercriminal group. 
+
+
 ### Remediation Steps
+
+1. Isolate and investigate compromised systems
+2. Review the identified filenames against available security telemetry and block them on firewalls as well as the relevant domains and URLs through filtering. 
+3. Strengthen email security to detect phishing messages and strange attachments
+4. Investigate possible credential compromise and change passwords and account details if needed (since IceID is associated with credential theft)
 
 ## References + achievement link (if applicable)
 
+https://malpedia.caad.fkie.fraunhofer.de/details/win.icedid 
 https://malpedia.caad.fkie.fraunhofer.de/actor/gold_cabin
 https://www.linkedin.com/pulse/weekly-recap-telecom-sleeper-cells-llm-jailbreaks-apple-kcx3c/ 
