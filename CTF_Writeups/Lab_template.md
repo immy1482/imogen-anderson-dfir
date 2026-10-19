@@ -5,7 +5,6 @@
 | **Platform** | [LetsDefend / CyberDefenders / Blue Team Labs / University Lab] |
 | **Category** | [SOC Analysis / Incident Response / Disk Forensics / Memory Analysis] |
 | **Difficulty** | [Easy / Medium / Hard] |
-| **Assigned Host / User** | [e.g., `DESKTOP-8J12K` / `john.doe`] |
 | **Primary Tools Used** | `Wireshark`, `Eric Zimmerman Tools`, `Splunk`, `Volatility 3`, `CyberChef` |
 
 ---
