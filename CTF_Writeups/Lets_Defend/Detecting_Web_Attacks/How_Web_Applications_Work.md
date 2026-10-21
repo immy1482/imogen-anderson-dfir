@@ -3,7 +3,7 @@
 | Metadata | Details |
 | :--- | :--- |
 | **Topic / Area** | [Web Security / Fundamentals ] |
-| **Platform / Course** | [LetsDefend] |
+| **Platform / Course** | kltsDefend |
 | **Completion Date** | [02-10-2026] |
 | **Key Frameworks / Standards** | [OSI Model, HTTP Requests & Responses] |
 
