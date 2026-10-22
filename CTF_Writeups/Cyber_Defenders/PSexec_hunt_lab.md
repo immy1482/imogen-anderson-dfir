@@ -20,6 +20,8 @@
 
 ### Q1 - To effectively trace the attacker's activities within our network, can you identify the IP address of the machine from which the attacker initially gained access?
 
+*PSexec* is a light-weight command line tool that users use to run programs while being on remote systems. It can execute commands, scripts and applications. Today, we'll be investigating suspicious activity that involves PSexec!
+
 To find a IP address the easiest, you simply go to statistic at the top, and then down to Ipv4 statistics and press on destination and source ports. This will give you a list to all the IP addresses from both the source and destination side, as shown in screenshot 1. 
 
 In screenshot 2, it shows the screen that will pop up that gives all the addresses - from the source port side, the IP address with the highest level of activity is 10.0.0.130, making this the IP address of the attacker. 
@@ -33,7 +35,9 @@ The smb traffic reveals that the attakcer used NTLM. NTLM (NT LAN manager) is a 
 It works by the client sending a reqest to the server for authentication, then the server responding with a random 16-byte number (aka called 'the challenge') and then the client will encrypt the challenge using a one-way hash of the user's password and sends the response back. The server/domain will then check the result against the stored hash to confirm the identity. 
 
 
-### Q3 -
+### Q3 - Knowing the username of the account the attacker used for authentication will give us insights into the extent of the breach. What is the username utilized by the attacker for authentication?
+
+PSexec embeds the authentication details within the SMB traffic. Screenshot 4 shows the user clearly outlined in the info of the packet. 
 
 ### Q4 -
 
@@ -50,3 +54,5 @@ It works by the client sending a reqest to the server for authentication, then t
 ### Remediation Steps
 
 ## References + achievement link (if applicable)
+
+https://www.silverfort.com/glossary/psexec/ 
