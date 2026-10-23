@@ -37,15 +37,34 @@ It works by the client sending a reqest to the server for authentication, then t
 
 ### Q3 - Knowing the username of the account the attacker used for authentication will give us insights into the extent of the breach. What is the username utilized by the attacker for authentication?
 
-PSexec embeds the authentication details within the SMB traffic. Screenshot 4 shows the user clearly outlined in the info of the packet. 
+PSexec embeds the authentication details within the SMB traffic. Screenshot 4 shows the user clearly outlined in the info of the packet. The user being 'ssales', similar to sales-pc. 
 
-### Q4 -
+This clearly shows that the attakcer had compromised and used the user 'ssales' to gain access into the target system. This can help the incident response teams to assess the damage now that the user associated with the attack has been identified. 
 
-### Q5 -
+### Q4 - After figuring out how the attacker moved within our network, we need to know what they did on the target machine. What's the name of the service executable the attacker set up on the target?
 
-### Q6 -
+So, I analyse further the smb2 requests and found that the attacker made a create request through SMB to set up the executable on the target. 
 
-### Q7 -
+In screenshot 5, it clearly shows the name of the service - PSEXESVC.exe. This executable was used with PsExec, which as explained before, is a legitmate tool used in Windows PCs but misused and abused here. 
+
+By using it here, the attakcer can execute commands remotely and effectively compromise the host. 
+
+
+### Q5 - We need to know how the attacker installed the service on the compromised machine to understand the attacker's lateral movement tactics. This can help identify other affected systems. Which network share was used by PsExec to install the service on the target machine?
+
+In the tree ID of the SMB2 requests with the PSexec, the network share that was used was identified as ADMIN$, as show in screenshot 6. 
+
+Using the ADMIN$ share allows the attacker to remotely copy the PsExec service executable to the target machine and gain the remote access they desire. This indicates their lateral movement since it relies on accessing privileged shares and using valid credentials to execute their commands on systems. 
+
+### Q6 - We must identify the network share used to communicate between the two machines. Which network share did PsExec use for communication?
+
+For communication, the attacker used the IPC$ network share, as shown in screenshot 7 where the IPC$ was in the info of some of the packets.
+
+IPC is short for Inter-Process Communication. It' allows anonymous users perform certain activities on a Windows PC. It usually used by administrators who are running remote management tasks and commands. 
+
+IPC is common in SMB communications particularly for these reasons. The connection attributes in the packet indicate the session was established using the ssales account and the communication then proceeded over SMB2. 
+
+### Q7 - Now that we have a clearer picture of the attacker's activities on the compromised machine, it's important to identify any further lateral movement. What is the hostname of the second machine the attacker targeted to pivot within our network?
 
 ## Verdict and incident recommendations 
 
