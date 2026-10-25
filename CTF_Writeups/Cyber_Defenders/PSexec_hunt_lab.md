@@ -5,6 +5,7 @@
 | **Platform** | Cyber Defenders |
 | **Category** | Network Forensics |
 | **Difficulty** | Easy |
+| **Tactics** | Executon, defense impairment, discovery, lateral movement |
 | **Primary Tools Used** | `wireshark` |
 
 ---
@@ -66,6 +67,8 @@ IPC is common in SMB communications particularly for these reasons. The connecti
 
 ### Q7 - Now that we have a clearer picture of the attacker's activities on the compromised machine, it's important to identify any further lateral movement. What is the hostname of the second machine the attacker targeted to pivot within our network?
 
+
+
 ## Verdict and incident recommendations 
 
 ### Verdict
@@ -75,3 +78,5 @@ IPC is common in SMB communications particularly for these reasons. The connecti
 ## References + achievement link (if applicable)
 
 https://www.silverfort.com/glossary/psexec/ 
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/inter-process-communication-share-null-session 
+

@@ -3,8 +3,8 @@
 | Field | Details |
 | :--- | :--- |
 | **Category** | [Network Security] |
-| **Difficulty** | [Easy] |
-| **Lab Link** | [https://cyberdefenders.org/blueteam-ctf-challenges/xxe-infiltration/] |
+| **Difficulty** | Easy |
+| **Tactics** | Reconnaissance, initial access, persistence, privilege escalation, stealth, credential access, discovery, collection, exfiltration|
 | **Tools Used** | `Wireshark, Brim` |
 
 ---
