@@ -21,7 +21,7 @@
 
 ### Q1: To effectively trace the attacker's activities within our network, can you identify the IP address of the machine from which the attacker initially gained access?
 
-**PsExec** is a lightweight command-line tool that allows users to run programs on remote systems. It can execute commands, scripts and applications. In this investigation, we will examine suspicious activity involving PsExec.
+PsExec is a lightweight command-line tool that allows users to run programs on remote systems. It can execute commands, scripts and applications. In this investigation, we will examine suspicious activity involving PsExec.
 
 To identify the IP address, I navigated to Statistic in Wireshark, followed by IPv4 Statistics. This provided a list of IP addresses involved in the captured network traffic, as shown in Screenshot 1.
 
