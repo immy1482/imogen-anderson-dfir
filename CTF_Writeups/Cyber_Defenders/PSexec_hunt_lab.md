@@ -19,64 +19,74 @@
 
 ## Lab Questions & Findings
 
-### Q1 - To effectively trace the attacker's activities within our network, can you identify the IP address of the machine from which the attacker initially gained access?
+### Q1: To effectively trace the attacker's activities within our network, can you identify the IP address of the machine from which the attacker initially gained access?
 
-*PSexec* is a light-weight command line tool that users use to run programs while being on remote systems. It can execute commands, scripts and applications. Today, we'll be investigating suspicious activity that involves PSexec!
+**PsExec** is a lightweight command-line tool that allows users to run programs on remote systems. It can execute commands, scripts and applications. In this investigation, we will examine suspicious activity involving PsExec.
 
-To find a IP address the easiest, you simply go to statistic at the top, and then down to Ipv4 statistics and press on destination and source ports. This will give you a list to all the IP addresses from both the source and destination side, as shown in screenshot 1. 
+To identify the IP address, I navigated to Statistic in Wireshark, followed by IPv4 Statistics. This provided a list of IP addresses involved in the captured network traffic, as shown in Screenshot 1.
 
-In screenshot 2, it shows the screen that will pop up that gives all the addresses - from the source port side, the IP address with the highest level of activity is 10.0.0.130, making this the IP address of the attacker. 
+Screenshot 2 shows the list of IP addresses and their associated traffic statistics. The IP address with the highest level of activity on the source side was 10.0.0.130, making it the suspected attacker machine.
 
-### Q2 - To fully understand the extent of the breach, can you determine the machine's hostname to which the attacker first pivoted? 
+### Q2: To fully understand the extent of the breach, can you determine the hostname of the machine to which the attacker first pivoted?
 
-Filtering smb2, we can trace the attacker's steps and find their host name. Pressing on the first packet and then 'follow', we can find the name of the host name - sales-pc, as shown in screenshot 3. 
+By filtering the traffic using smb2, I was able to trace the attacker's activity and identify the hostname of the target machine. By selecting the first relevant packet and following the associated traffic, I identified the hostname as SALES-PC, as shown in Screenshot 3.
 
-The smb traffic reveals that the attakcer used NTLM. NTLM (NT LAN manager) is a Microsoft security protocol used to authenticate user identity and provide security in Windows networks. 
+The SMB traffic also revealed that NTLM authentication was used. NTLM (NT LAN Manager) is a Microsoft authentication protocol used to verify user identities in Windows networks.
 
-It works by the client sending a reqest to the server for authentication, then the server responding with a random 16-byte number (aka called 'the challenge') and then the client will encrypt the challenge using a one-way hash of the user's password and sends the response back. The server/domain will then check the result against the stored hash to confirm the identity. 
+It uses a challenge-response mechanism. The server sends the client a random challenge, which the client processes using information derived from the user's password. The client then sends the response back to the server, which verifies it against the expected result. This allows the server to authenticate the user without sending the password directly over the network.
 
+### Q3: Knowing the username of the account the attacker used for authentication will give us insights into the extent of the breach. What username did the attacker use for authentication?
 
-### Q3 - Knowing the username of the account the attacker used for authentication will give us insights into the extent of the breach. What is the username utilized by the attacker for authentication?
+PsExec uses SMB to establish connections to remote systems, and the associated authentication traffic can reveal the account used. Screenshot 4 shows the username in the packet details: ssales.
 
-PSexec embeds the authentication details within the SMB traffic. Screenshot 4 shows the user clearly outlined in the info of the packet. The user being 'ssales', similar to sales-pc. 
+This suggests that the attacker used the ssales account to authenticate to the target system. Identifying the account helps the incident response team investigate potential credential compromise, determine the account's privileges and assess whether it was used to access other systems.
 
-This clearly shows that the attakcer had compromised and used the user 'ssales' to gain access into the target system. This can help the incident response teams to assess the damage now that the user associated with the attack has been identified. 
+### Q4: After figuring out how the attacker moved within our network, we need to know what they did on the target machine. What is the name of the service executable the attacker set up on the target?
 
-### Q4 - After figuring out how the attacker moved within our network, we need to know what they did on the target machine. What's the name of the service executable the attacker set up on the target?
+I analysed the SMB2 requests and identified a file creation request associated with the installation of the PsExec service on the target machine.
 
-So, I analyse further the smb2 requests and found that the attacker made a create request through SMB to set up the executable on the target. 
+As shown in Screenshot 5, the service executable was named PSEXESVC.exe. This executable is associated with PsExec, a legitimate Windows administration tool that can be abused by attackers to execute commands remotely.
 
-In screenshot 5, it clearly shows the name of the service - PSEXESVC.exe. This executable was used with PsExec, which as explained before, is a legitmate tool used in Windows PCs but misused and abused here. 
+In this case, its use indicates that the attacker was attempting to establish remote command execution on the target machine, supporting the evidence of lateral movement.
 
-By using it here, the attakcer can execute commands remotely and effectively compromise the host. 
+### Q5: We need to know how the attacker installed the service on the compromised machine to understand their lateral movement tactics. Which network share did PsExec use to install the service on the target machine?
 
+By examining the SMB2 requests associated with PsExec, I identified the network share used to install the service as ADMIN$, as shown in Screenshot 6.
 
-### Q5 - We need to know how the attacker installed the service on the compromised machine to understand the attacker's lateral movement tactics. This can help identify other affected systems. Which network share was used by PsExec to install the service on the target machine?
+The ADMIN$ share is a Windows administrative share that provides access to the Windows directory on a remote system. PsExec can use this share to copy its service executable to the target machine before starting the service.
 
-In the tree ID of the SMB2 requests with the PSexec, the network share that was used was identified as ADMIN$, as show in screenshot 6. 
+The use of this share indicates potential lateral movement through administrative access and valid or compromised credentials.
 
-Using the ADMIN$ share allows the attacker to remotely copy the PsExec service executable to the target machine and gain the remote access they desire. This indicates their lateral movement since it relies on accessing privileged shares and using valid credentials to execute their commands on systems. 
+### Q6: We need to identify the network share used to communicate between the two machines. Which network share did PsExec use for communication?
 
-### Q6 - We must identify the network share used to communicate between the two machines. Which network share did PsExec use for communication?
+The attacker used the IPC$ network share for communication, as shown in Screenshot 7, where IPC$ appears in the packet information.
 
-For communication, the attacker used the IPC$ network share, as shown in screenshot 7 where the IPC$ was in the info of some of the packets.
+IPC stands for Inter-Process Communication. In Windows, the IPC$ share supports communication between processes over the network, including through named pipes used by administrative services and remote management tools.
 
-IPC is short for Inter-Process Communication. It' allows anonymous users perform certain activities on a Windows PC. It usually used by administrators who are running remote management tasks and commands. 
+The captured traffic indicates that the SMB communication was associated with the ssales account. In this investigation, the use of IPC$ is consistent with PsExec's remote communication and service management activities.
 
-IPC is common in SMB communications particularly for these reasons. The connection attributes in the packet indicate the session was established using the ssales account and the communication then proceeded over SMB2. 
+### Q7: Now that we have a clearer picture of the attacker's activities on the compromised machine, it is important to identify any further lateral movement. What is the hostname of the second machine the attacker targeted?
 
-### Q7 - Now that we have a clearer picture of the attacker's activities on the compromised machine, it's important to identify any further lateral movement. What is the hostname of the second machine the attacker targeted to pivot within our network?
+Screenshot 8 identifies the second target as MARKETING-PC. However, Screenshot 9 shows a STATUS_LOGON_FAILURE response, indicating that the authentication attempt failed.
 
-
+This suggests that the attacker attempted to access another machine using credentials that were not accepted. Although this particular attempt appears to have been unsuccessful, it demonstrates an attempt to expand access across the network.
 
 ## Verdict and incident recommendations 
 
 ### Verdict
 
+The investigation identified 10.0.0.130 as the suspected attacker machine, which accessed SALES-PC using the ssales account. The attacker used PsExec to perform lateral movement over SMB2, installing the PSEXESVC.exe service executable through the ADMIN$ administrative share and using IPC$ for communication. The attacker then attempted to access MARKETING-PC, but the attempt resulted in a STATUS_LOGON_FAILURE, indicating that authentication was unsuccessful. The findings suggest that SALES-PC was potentially compromised and that the attacker attempted to expand their access across the network. Further investigation would be required to determine whether additional systems were compromised, what commands were executed and whether any sensitive data was accessed or exfiltrated.
+
 ### Remediation Steps
+
+1. Isolate affected systems - disconnect SALES-PC from the network while preserving forensic evidence for further investigation.
+2. Secure compromised credentials - Reset the ssales account password, review its privileges and investigate potential credential reuse.
+5. Restrict administrative access - limit access to ADMIN$ and IPC$ and use firewall rules and network segmentation to restrict unnecessary SMB connections.
+6. Strengthen authentication - Enforce strong, unique passwords and multifactor authentication where supported, and reduce reliance on NTLM where feasible.
+7. Improve monitoring - Configure security tools to detect unusual PsExec usage, suspicious service creation and repeated authentication failures.
 
 ## References + achievement link (if applicable)
 
 https://www.silverfort.com/glossary/psexec/ 
 https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/inter-process-communication-share-null-session 
-
+https://cyberdefenders.org/blueteam-ctf-challenges/achievements/immy1482/psexec-hunt/ 
