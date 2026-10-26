@@ -14,8 +14,8 @@ Currently learning: **Digital Forensics processing, Cyber Security Landscapes an
 | :--- | :--- |
 | **Digital Forensics Suites** | EnCase, FTK Imager, Autopsy, Cellebrite (Mobile Forensics) |
 | **Network & Web Security** | Wireshark, Nmap, Burp Suite, Metasploit, Cisco Packet Tracer |
-| **Lab & Simulation Platforms** | Hacktivity Platform, SIFT Workstation, Kali Linux, REMnux |
-| **Scripting & Databases** | Python, PowerShell, SQL (PostgreSQL/MySQL), Bash |
+| **Lab & Simulation Platforms** | Hacktivity Platform, CyberDefenders, LetsDefend |
+| **Scripting, Databases and programming** | Python, PowerShell, SQL (MySQL), Bash, Java |
 | **Core Methodologies** | Evidence Handling & Chain of Custody, Forensic Imaging, ISO/IEC 27037 standards |
 
 ---
