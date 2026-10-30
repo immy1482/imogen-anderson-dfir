@@ -2,7 +2,7 @@
 
 | Field | Details |
 | :--- | :--- |
-| **Category** | [Network Security] |
+| **Category** | Network Security |
 | **Difficulty** | Easy |
 | **Tactics** | Reconnaissance, initial access, persistence, privilege escalation, stealth, credential access, discovery, collection, exfiltration|
 | **Tools Used** | `Wireshark, Brim` |

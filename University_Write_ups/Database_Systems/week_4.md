@@ -24,8 +24,6 @@ What is the most important thing I learned this week?
 Database constraints help maintain data integrity by preventing invalid records and ensuring relationships between tables remain consistent. 
 
 
-
-
 ### Challenges / questions ⋆‧°𓏲ּ𝄢
 What did I struggle with, or what do I want to understand better?
 
