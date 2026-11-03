@@ -2,7 +2,7 @@
 
 | Metadata | Details |
 | :--- | :--- |
-| **Platform** | CyberDefender|
+| **Platform** | CyberDefender |
 | **Category** | Network Analysis|
 | **Difficulty** | Easy |
 | **Primary Tools Used** | `Wireshark`, `Network Miner` |
@@ -17,9 +17,21 @@
 
 ## Lab Questions & Findings
 
-### Q1 - 
+### Q1 - Given the suspicious activity detected on the web server, the PCAP file reveals a series of requests across various ports, indicating potential scanning behavior. Can you identify the source IP address responsible for initiating these requests on our server?
 
-### Q2 -
+### Q2 - Based on the identified IP address associated with the attacker, can you identify the country from which the attacker's activities originated?
+
+### Q3 - From the PCAP file, multiple open ports were detected as a result of the attacker's active scan. Which of these ports provides access to the web server admin panel?
+
+### Q4 - Following the discovery of open ports on our server, it appears that the attacker attempted to enumerate and uncover directories and files on our web server. Which tools can you identify from the analysis that assisted the attacker in this enumeration process?
+
+### Q5 - After enumerating directories on our web server, the attacker made numerous requests to identify administrative interfaces. Which directory related to the admin panel did the attacker uncover? (Provide the path including the leading slash, e.g. /path)
+
+### Q6 - After accessing the admin panel, the attacker brute-forced the login. What credentials did the attacker successfully use? (Provide them in username:password format)
+
+### Q7 - Once inside the admin panel, the attacker attempted to upload a file with the intent of establishing a reverse shell. Can you identify the name of this malicious file from the captured data?
+
+### Q8 - After the attacker established a reverse shell on our server, the payload connects back to the attacker's machine. From the analysis, what is the callback destination in IP:port format?
 
 ## Verdict and incident recommendations 
 
