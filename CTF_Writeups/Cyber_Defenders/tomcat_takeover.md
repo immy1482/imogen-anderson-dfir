@@ -40,3 +40,7 @@
 ### Remediation Steps
 
 ## References + achievement link (if applicable)
+
+https://whatismyipaddress.com/ip-lookup
+https://ipfinder.app/en/learn/ip-address/how-ip-address-lookup-works/ 
+https://www.researchgate.net/publication/382051703_How_dangerous_to_be_open_Ports_80 
