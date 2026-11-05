@@ -19,6 +19,8 @@
 
 ### Q1 - Given the suspicious activity detected on the web server, the PCAP file reveals a series of requests across various ports, indicating potential scanning behavior. Can you identify the source IP address responsible for initiating these requests on our server?
 
+In screenshot one, I went to the statistics at the top of wireshark and then into IPv4 statistics. In the drop down I then selected source and destination addresses, which shows all of the potential answers to this question as shown in screenshot 2.
+
 ### Q2 - Based on the identified IP address associated with the attacker, can you identify the country from which the attacker's activities originated?
 
 ### Q3 - From the PCAP file, multiple open ports were detected as a result of the attacker's active scan. Which of these ports provides access to the web server admin panel?
