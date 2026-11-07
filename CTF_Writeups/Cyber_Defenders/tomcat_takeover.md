@@ -23,6 +23,15 @@ In screenshot one, I went to the statistics at the top of wireshark and then int
 
 ### Q2 - Based on the identified IP address associated with the attacker, can you identify the country from which the attacker's activities originated?
 
+In order to find this out, we will have to go to a website such as whatismyipaddress.com to look up which country the IP address originated from.
+
+
+After inputting the previous IP address, it shows us that it originates from China (see screenshot 3). Specifically in the Guangdong region. 
+
+
+IP address lookups are useful for investigating threats, since security teams can use these lookups to trace the source of malicious traffic, port scans or login attempts. They can then check if the IP address is listed on security blocklists using databases online. Lookups work by querying databases (such as regional internet registries, geolocation datasets etc.) to match a public IP address with networks, ownerships and regional data.
+
+
 ### Q3 - From the PCAP file, multiple open ports were detected as a result of the attacker's active scan. Which of these ports provides access to the web server admin panel?
 
 ### Q4 - Following the discovery of open ports on our server, it appears that the attacker attempted to enumerate and uncover directories and files on our web server. Which tools can you identify from the analysis that assisted the attacker in this enumeration process?
