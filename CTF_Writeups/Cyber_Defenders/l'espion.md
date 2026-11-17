@@ -1,4 +1,4 @@
-# Lab Investigation: [Lab / Case Title]
+# Lab Investigation: L'Espion
 
 
 | Metadata | Details |
@@ -6,7 +6,7 @@
 | **Platform** |Cyberdefenders |
 | **Category** | Threat Intel |
 | **Difficulty** | Easy |
-| **Primary Tools Used** | `cyberchef`, `google maps`, `sherlock`, `github` |
+| **Primary Tools Used** | `cyberchef`, `google maps`, `github` |
 
 
 ---
