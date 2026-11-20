@@ -110,10 +110,6 @@ I searched up St. Martin’s church and then ‘grand central’ on the end, and
 
 The webcam hardly gave me clues as much as the office picture did, but I decided to use google reverse imaging and found that it was the University of Notre Dam, which is located in Indiana, USA.
 
-
-## Verdict and incident recommendations
-
-
 ## Verdict and incident recommendations
 
 
